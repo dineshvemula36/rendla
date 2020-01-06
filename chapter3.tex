@@ -1,219 +1,62 @@
-\documentclass[review]{elsarticle}
-\def\bibsection{\section*{References}}
-\usepackage{lineno,hyperref}
-\usepackage{multirow}
-\usepackage{graphicx}
-\usepackage[tight,footnotesize]{subfigure}
-%\usepackage{breqn}
-\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
-%\usepackage{titlesec}
-\usepackage[titletoc,toc,title]{appendix}
-\usepackage{longtable}
-\usepackage{rotating}
+\chapter{Facial Expression Analysis using Local Directional Stigma Mean Patterns and Convolutional Neural Networks}
+\label{Chapter 3:EVIMAS}
+\textit{This paper represents automatic facial expression analysis method named Local Directional Stigma Mean Patterns (LDSMP) for automatic facial expression analysis and image retrieval using content based facial expression image retrieval and CNN. The traditional local patterns such as Local Binary Patterns (LBP) and Local Ternary Patterns (LTP) are applied for face recognition and expression analysis, calculated using relationship between the center pixel and neighboring pixels. The proposed method calculates the eight directional difference values then divided into the three ranges based on threshold values. Thus, the values are substituted with basic three positive values (+3, +2, +1) and three negative values (-3, -2, -1) to get more sensitive information from an image rather than aforementioned methods. The threshold can be select either static which is selected by user or dynamic is evaluated from image itself and supports to improve the efficiency. The performance of the proposed method is further improved by giving this patterns as input to the Convolutional Neural Networks (CNN) and compared with the existing methods LBP, LTP, and Directional Binary Code (DBC) in terms of Average Precision (AP), Average Recall (AR), and Average Retrieval Rate (ARR) using standard databases COREL 10K (DB1) and JAFFE (The Japanese Female Facial Expression) (DB2) and Extended Cohn-Kanade(CK+) (DB3) dataset.  This chapter was published by the author in Soft Computing journal, Springer \cite{DineshReddy2017}}
 
-
-\modulolinenumbers[5]
-
-\journal{Energy \& Buildings}
-
-\bibliographystyle{elsarticle-num}
-%%%%%%%%%%%%%%%%%%%%%%%
-
-\newcommand{\specialcell}[2][l]{%
-	\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
-\newcommand{\specialcellcenter}[2][c]{%
-	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
-\begin{document}
-	\begin{frontmatter}
-			\title{Local Textural Patterns for Facial Feature Extraction}
-		\author[mysecondaryaddress]{V. Dinesh Reddy\corref{mycorrespondingauthor}}
-		\cortext[mycorrespondingauthor]{Corresponding author}
-		\ead{dineshvemula@gmail.com}
-		\address[mysecondaryaddress]{Global Technology Office- Foundational Research,Cognizant Technology Solutions}
-	
-		
-		\begin{abstract}
-		\textit{ Over the last two decades shared and stored multimedia data are growing. Retrieving an accurate image has become a key challenge yet to be solved. we can solve this problem using texture patterns that reduce the gap between the actual image over the user expectation instead of using other low-level features. This chapter 
-			reviews some of the existing approaches and the recent achievements in different directions  of the textural areas in CBIR. We present recent methods for   collect  features extraction through texture analysis, numerical illustration and similarity measurement. Further, some research issues arising out of the review of existing methods are discussed in comparisons of textural patterns and concluded with a few recommendations based on generic survey. }
-	\end{abstract}
-	\begin{keyword}
-		Data center \sep  energy efficiency \sep optimization \sep  resource  scheduling \sep PSO \sep GA.
-	\end{keyword}
-\end{frontmatter}
 
 
 \section{Introduction}
-\label{intro-chapter}
-Facial expression analysis (FEA) is the challenging task over the area of Artificial Intelligence (AI) and computer vision. FEA demands in many applications such as criminals expression analysis, entertainment, surveillance in public transportation, patient mood analysis, student interest in online classes, customer satisfaction etc. probably statistical methods have been applying with the combination of classification algorithms such as ANN, SVM etc. but still expecting more accurate results.
-
-Content Based Image Retrieval (CBIR) belongs to image analysis and is a  computer vision techniques to the image retrieval problem. CBIR consists of retrieving the most visually similar images to a given query image from a database. Development of such retrieval systems requires the integration of various techniques in the fields of Image Processing (IP) and Information Retrieval (IR).  The key steps of image retrieval system include:  Image feature extraction, similarity comparison, user's feedback and retrieval results. It relates to machine vision, pattern recognition, database technology and information retrieval studies \cite{18zen2016learning}. 
+Facial expression analysis (FEA) is the challenging task in the field of Artificial Intelligence (AI) and computer vision. FEA demands in many applications such as criminals expression analysis, entertainment, surveillance in public transportation, patient mood analysis, student interest in online classes, customer satisfaction etc. probably statistical methods have been applying with the combination of classification algorithms such as ANN, SVM etc. but still expecting more accurate results. 
 
 
-CBIR with unannotated data-sets is a cutting edge and fastest growing  research area.
-%The problems of metadata based image retrieval and rapid growth in the quantity and availability of digital images motivates research into automatic image retrieval
- Huge demand and growing internet culture producing 
-huge digital images  motivates research into automatic image retrieval in various fields such as biological, scientific, pharma etc. To proficiently use these digital images, there is need of powerful, and productive DBMS for images and a CBIR framework. In contrast to traditional images retrieval, Content Based Image Retrieval (CBIR) uses the information that is already available in the image \cite{19whitehill2014faces}. CBIR either using local features such as color, texture, shape and spatial layout etc \cite{20tariq2012recognizing,21yang2002detecting,22vipparthi2016local} using computer vision techniques among others or high level features like soft computing techniques as neural networks, fuzzy logic and machine algorithms etc \cite{23hayat2014automatic,24vipparthi2015local}. The idea of local patterns is adopted to propose the maximum edge positions is classified into two categories which are named as sign maximum edge position and magnitude maximum edge positions for octal patterns \cite{subrahmanyam2012local}. 
+The exponential growth of digital data due to usage of internet especially online services and through digital equipment like digital cameras, mobile phones etc. are generating daunting size of data is making stun to handle such databases very hard and inept by using only human annotations. Text – based systems are used in earlier of 1970’s, images are searched based on human annotations but this systems are suffered with some disadvantages like staff is required to give annotations and inaccuracy due to wrong notation to an image.  So managing this copious data is tedious task to the administrator, thus to overcome this there is a acute demand of proficient and automatic structure is required named Content – Based Image Retrieval. Its prominent step is feature extraction whose impinge based on the technique developed to extract the features from an image. There are two categories of features (i) Low-level features and (ii) High-level features, CBIR uses low-level features such as color, texture, spatial information, shape etc. from image itself only. Here, generating the common representation of an image by considering perceptual content is difficult task because a user may take photographs in various kind of situations, illumination, orientation etc. illustrative, Comprehensive and upgraded survey about extraction, multidimensional on CBIR and future directions was given by Yong Rui, Liu and Kokare[1][2][3]. The retrieval accuracy of CBIR is generally depends on the efficient feature extraction following with similarity measurement methods. The recent applications of Convolutional Neural Networks (CNN) for image classification has proved that provides better results, so motivated to fusion the local directional stigma patterns to the CNN as input feature vector array to recognize and analyze the facial expressions.  
 
-%In CBIR using color edge detection technique, image is converted from RGB to YCbCr color space. After this on Y plane, canny edge detection technique is applied and then planes of an image are combined and again color space conversion from YCbCr to RGB is done. Image Histogram is calculated for each plane of resultant image. Finally discrete wavelet transform is applied on the Histogram to get feature vector of reduced size. 
-
-%Content Based Image Retrieval turning out to be more notorious in web information mining strategies. Which has a place with an examination field of image investigation, called Query By Image Content (QBIC) and Content-Based Visual Information Retrieval (CBVIR). The key advances image retrieval include: Image feature extraction, feature based similitude estimation, semantically pertinence criticism and image procurement. It identifies with machine vision, design acknowledgment, database innovation and data retrieval studies[18].Content-Based Image Retrieval (CBIR) from agitated image databases is a wide and flexible field of examination hobbies. With quick and sensational development of web society, colossal advanced images delivered by logical, instructive, therapeutic, modern, and different applications. To proficiently use this tremendous developing information, there is need of astute, exact, viable, and effective substance based image retrieval framework and image database administration frameworks. The issues of metadata based image retrieval and fast development in the amount and accessibility of advanced images persuades research into programmed image retrieval. Rather than customary images retrieval, Content Based Image Retrieval (CBIR) utilizes the data that is as of now accessible in the Image[19].
+Texture feature is one of the most important characteristics among basic low level features of an image, this psych	iatry has been extensively used in many CBIR applications due to its potentiality. Henning Muller et al. [4] presented exclusive review on generic content based image retrieval and technologies used for medical diagnosis images especially heart imagery applications and future directions. Moghadam et al. [7] had proposed a new algorithm called wavelet correllogram for image retrieval based on the color correllogram and multiresolution using daubechies wavelets then quantization method was applied. Moghaddam and Saadatmand were developed extended wavelet correllogram ie. Gabor Wavelet Correllogram by extracting  rotation invariant features using gabor wavelets with optimized weighted distance to enhance the accuracy [8].Zhang et al. [9] were proposed a hybrid method used to gather the global feature with the help of training free LBP variance(LBPV) and also used dissimilarity metric for dimensionality reduction with the combination of nearest neighbor classification and chi-square distance to create model. Kokare et al.(2005) [10] have introduced DT-RCWF and DT-RCT to retrieve the texture features in 12 directions used to decompose image. Zhen et al. [14] were proposed a hybrid method having space, scale, and orientation using gabor filters and LBP for face recognition. Second order derivatives for Local ternary patterns with KPCA (kernel principal component analysis) to confine the traces of median filtering [17].
 
 
-\section{Problem Statement, Objectives, and Contributions}  
-This thesis develops the techniques for optimizing the energy consumption in a cloud data center, evaluates and expose the limitations of the existing practices and tackles forecasting data center energy consumption for better planning and operations of the data centers and proposes a taxonomy on metrics available to analyze energy efficiency of the data centers. We have investigated the following research problems :
-\begin{itemize}
-	\item 1
-\end{itemize}
-
-
-To address these problems, we formulate the following   research specific  objectives.
-
-\begin{enumerate}
-	\item The objective of the proposed research work is to analyze the image data to retrieve the correct image from the database helpful to retrieve the correct data from existing image database in crime analysis, online commercial web sites and facial expression analysis useful to identifying the moods of a person to analyze the situation in many real world applications like medical, military, entertainment, crime etc.
-	\begin{itemize}
-		\item  Directional Local Patterns are recommended to textural feature extraction for facial expression recognition and also mining the facial expressions to avoid the indiscriminant patterns.	
-	\end{itemize}
-	
-	
-	\begin{figure}
-		\centering
-%		\includegraphics[width=0.7\linewidth]{chapter1/figures/fig1}
-		\caption{(a) 3 X 3 pixel format surrounding the center pixel and 8 neighboring pixels (b) differences among   center pixel and surrounding pixels (c) Substituted with binary (0, 1) values}
-		\label{fig:fig1}
-	\end{figure}
-	
-	\begin{figure}
-		\centering
-	%	\includegraphics[width=0.7\linewidth]{chapter1/figures/fig2}
-		\caption{Calculation of LTP}
-		\label{fig:fig2}
-	\end{figure}
-% the ternary patterns are split in to upper and lower patterns by substituting ‘1’ for ‘+1’ to get upper binary pattern and ‘1’ for ‘-1’ for lower binary pattern in both the cases ‘0’ for ‘0’’s
-	
-	\item local patterns are generated from the low level features such as color, texture and shape. Textural pattern splay an imperative role to extract the local information like edges, texture of surface etc. Local patterns have been calculated from relationship of the pixel values of every pixel like LBP, LTP are calculated base on the first order calculation (difference) shown in Fig. \ref{fig:fig1} and Fig. \ref{fig:fig2}. local binary patterns are proved better for face recognition but LBP is suffering from discrimination as shown in Fig. \ref{fig:lbppattern} (will get the same patterns for two cases) of pixel intensity values. Proposed work overcome this problem by dividing the range of differences based threshold value.
-	\begin{itemize}
-		\item Classify and generalize the decision making process using suitable selection of algorithms such as machine learning algorithms and deep learning algorithms for facial emotional expressions to reduce the semantic gap without ambiguity.
-	\end{itemize}	
-	\begin{figure}
-		\centering
-%		\includegraphics[width=0.7\linewidth]{chapter1/figures/LbpPattern}
-		\caption{Example for generating same LBP (00100111) pattern for both textures with large and small intensity values}
-		\label{fig:lbppattern}
-	\end{figure}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.9\linewidth]{LBPsteps.jpg}
-		\caption{Query image (top left) feature images of Local Binary Pattern (LBP), Uniformed LBP, Circulared LBP, Local Ternary Pattern (LTP), Directional Binary Code (DBC), Gabor filtered Transform (GT), LGMMEPOP (Local Gabored Magnitude Maximum Edge Positioned Octal (8) Patterns), LGSMEPOP (Local Gabor filter Signed greatest Edge Positioned Octal Patterns), and proposed method LDSMP (left side top corner image is query image)}
-		\label{fig:lbpltp}
-	\end{figure}
-	
-	
-	\item Retrieving the feature extraction is the prominent step in image retrieval that will be done by pattern generation as shown in Fig. 4 using different patterns. Furthermore, the next important step is classification of images like for our work expression classification i.e. happy, surprise, sad, disgust, angry, neutral etc. for  this machine learning is proved better but still there is a gap so, we would like to enhance the usage of combinational algorithms and also applying deep learning algorithms to get better results compared to earlier.
-	\begin{itemize}
-		\item To improve the Facial Expression Recognition Rate, Precision and Recall to get better results in different applications.	
-	\end{itemize}
-	
-	
-\end{enumerate}
-
-%\section{Contributions}
-%The contributions of this thesis can be broadly divided into 4 categories: a systematic review of the area, novel algorithms for energy efficient VM placement and selection, machine learning algorithms for foresting data center energy consumption, analysis of metrics and implementation of best practices for sustainable data centers. The key contributions of the thesis are:
-The salient contributions of this thesis are as follows:
-\begin{enumerate}
-	\item A Systematic Literature Review (SLR) on energy efficient data center management techniques (see Chapter 2).
-	\item A Modified  Discrete Particle Swarm Optimization (MDPSO)  approach for energy-aware virtual machine allocation and selection in cloud data centers (see chapter \ref{Chapter2:SLR}).
-
-\end{enumerate}
-
-\section{Thesis Organization}
-This thesis consists of 7 chapters including an introductory and a concluding chapter followed by Appendices. Content of this thesis can be broadly divided into 5 categories: literature review of the area, novel algorithms for dynamic VM placement and selection, novel algorithms for data center energy demand prediction, analysis of data centers metrics and evaluation of best practices for sustainable data centers as shown in Figure \ref{org}. The content of each of these chapters is summarized as follows:
-\begin{figure}[h]
+Local binary patterns and extensions uLBP, CLBP etc., gradient based patterns, histogram based patterns are became popular due to its simplicity and efficiency. In spite of that LBP methods suffering from disadvantages especially while encoding large and small intensity difference values shown in Fig.1 that leads to unsuccessful to retrieve the features separately as positive and negative features from the prominent positions of an image particularly in facial expressions. However, these variations can be addressed as mark by proposed method.
+\begin{figure}
 	\centering
-%	\includegraphics[scale=0.55]{chapter1/figs/ThesisOrg}
-	\caption{Thesis Organization}
-	\label{org}
+	\includegraphics[width=0.7\linewidth]{chapter3/lbpEx}
+	\caption{Example for generating same LBP (00100111) pattern for both textures with large and small intensity values}
+	\label{fig:lbpex}
 \end{figure}
 
-\begin{itemize}
-	\item[Chapter 1] provides the motivation and importance of improving the energy efficiency in data centers. This chapter begins with the basics of data centers and discussion of energy efficient data center management strategies that include optimal VM placement and selection, demand forecasting, etc. Further, it presents the problem statement, objectives, and contributions. 
-	
-	\item[Chapter 2] presents a literature review on energy efficient data center management techniques for data centers. To identify open challenges in the energy
-	efficient virtual machine placement and selection and to facilitate further advancements, it is essential to synthesize the research in this area conducted to date. This chapter presents a literature review on the virtual machine placement and consolidation using soft computing techniques and applications of machine learning algorithms to monitor data center operations.
-	
-	\item[Chapter 3] presents three novel approaches for energy efficient virtual machine placement and a novel virtual machine selection mechanism for cloud data centers.
-	
-	\textbf{Technique 1:}  We describe a Modified Discrete Particle Swarm Optimization (MDPSO) approach.
-	
-	\textbf{Technique 2:}
-	Taking the recent advances in multi-core architectures, we develop a parallelized optimization algorithm called Interactive PSO-GA (IPSOGA).
-	
-	\textbf{Technique 3:}
-	Inspired by the imitating behavior of humans, we developed an Imitation Based Optimization (IBO), a swarm based approach for virtual machine placement. 	
-	The first part of this chapter is published in \textbf{Soft Computing, Springer \cite{DineshReddy2017}}.
-	
-	
-	\item[Chapter 4] presents the following machine learning approaches for forecasting data center energy demand. 
-	
-	\textbf{Technique 1:}
 
-	
-	\textbf{Technique 2:} 
-	
-	
-	\item[Chapter 5] presents an analysis of metrics that are commonly used in data centers, starting from the power grid and going all the way up to the service delivery.  Our work on analysis of metrics is published in \textbf{IEEE Transactions on Sustainable Computing \cite{tsusc}}.
-	
-	
-	\item[Chapter 6] 
-	%All the data center operators need to compare their current approaches with industry standards and assess whether their practices are still valid and/or optimal. It is thus essential to consider any opportunity to reduce the energy consumption of the data centers, both in design and operations. 
-	%In this chapter, we have analyzed eight data centers in India and the Netherlands. Based on our findings and industry standards, we 
-	describes a set of best practices to improve the energy efficiency of the data centers which spans the categories of Energy Efficiency, Cooling, Air and Thermal management, Greenness, Storage, and Networks.
-	% Following some of these best practices, data centers surveyed in our study have achieved 10 – 20\% improvements in their energy consumption.
-	The chapter provides efficient alternatives in daily operations of the data centers and costs saving opportunities. This chapter is broadly based on the contents of our paper that is accepted in \textbf{IT Professional, IEEE \cite{25}}.  
-	
-	
-	
-	\item[Chapter 7]% Conclusions and Future Directions}
-	summarizes the contributions of the thesis and outlines the future directions. 
-	%This thesis develops the techniques for optimizing the energy consumption in a data center using energy efficient VM placement and selection, evaluates and expose the limitations of the existing practices. Further, this thesis tackles the problem of forecasting data center energy consumption for better planning and operations of data centers. In our future work, we will consider implementing extra constraints on the VM placement to co-allocate VMs on the physical server or to performance or privacy concerns. There is scope for improvement of VM placement algorithms using buffered VM placement requests. Further, it is necessary to develop the power consumption models of the network devices and design the allocation policies considering the network energy consumption and the cost of data transfer. Another direction of future research is to exploit VM resource usage pattern for more efficient resource provisioning and higher energy efficiency. %Furthermore, one interesting future direction is to address the problem of designing self-managed storage authentication system.
-	
-\end{itemize}
-
-%\item[Chapter \ref{sec:conclusion}] presents the conclusions drawn and future research directions in the case of service composition using CI techniques.
-%\end{itemize}
-
-\newpage
-	
-	\section{abstract}
-	\textit{ Over the last two decades shared and stored multimedia data are growing. Retrieving an accurate image has become a key challenge yet to be solved. we can solve this problem using texture patterns that reduce the gap between the actual image over the user expectation instead of using other low-level features. This chapter 
-	reviews some of the existing approaches and the recent achievements in different directions  of the textural areas in CBIR. We present recent methods for   collect  features extraction through texture analysis, numerical illustration and similarity measurement. Further, some research issues arising out of the review of existing methods are discussed in comparisons of textural patterns and concluded with a few recommendations based on generic survey. }
+Organization of the chapter includes: Section I \& II describes the brief introduction and precise literature survey. Section III represents the proposed work for feature extraction, Framework and Convolutional Neural Network description is mentioned in Section IV \& V, Results and analysis is presented in Section VI and retrospectively, in section VII, concluded with proposed work and mentioned probable future work,  and finally references are listed in Section VIII.
 
 
-	
-
-\section{Introduction}
-%The-state-of-art escalation in the digital data production steadily due to the dominant use of internet and digital equipment in various fields such as medical \cite{mitra2002unsupervised,zhang2001segmentation}, entertainment, education, media, online business etc. becoming by keywords. This makes the system cumbersome to manage the abundant data is and human annotations as if in text- based systems. Therefore, here is a tremendous call for an efficient system to retrieve the precise images from the massive database rather than labels. Today Content based image retrieval (CBIR) system is the most well-known system for some applications, CBIR consists the important and essential steps such as feature extraction, relevance feedback, similarity measurements etc., and here feature extraction is the most prominent step in pre-processing that depends on the technique make use of extract the features from the only image like local data as color, texture, shape, human faces etc., further features are categorized into local features such as color features, layout, shape features and texture \cite{deng2001efficient,manjunath2001color} and high-level features such as faces, biometric, neural networks etc. To retrieve an accurate image with the help of one and only feature is arduous due to the probability of user taking photographs in any direction like several regions which include random direction of capturing of image, optical device, uneven illumination and that of posing expressions, relevance feedback etc. \cite{jing2004relevance,su2003relevance} so the system demands the combination of two or multiple features and filtering process. A general and upgraded survey is typified in the further sections.
-
-\section{Review of Local Textural Patterns for Facial Feature Extraction}
-The section presents the comprehensive survey on the, local patterns such as LBP, LTP, LTRP etc. texture analysis and retrieval are important and to be in a tight corner in the field of CBIR. Textures are most useful in retrieving of tiles, facial expressions, fabric, clouds, animal skin etc. 
-
-Rui et al. \cite{rui1999image} presented a survey on the image feature representation and extraction, multidimensional indexing, and system design. 
-Moghaddam et al. \cite{moghaddam2006gabor} have improved the Gabor wavelet correlogram (GWC) for image indexing and retrieving and address the redundancy problem \cite{moghaddam2006gabor}. Further they proposed evolutionary group algorithm to optimize the weights which improve the  evaluation measures  \cite{Moghaddam2007novel}.  Ojala et al. \cite{pietikainen2000rotation} used the G statistic metric to compare feature distributions and they derived the feature distribution using local texture operator on texture image. 
-%Ying Liu presents and analyzes high level features for CBIR such as machine learning tools, object ontology, semantic template, and neural networks to reduce the semantic gap (n.d.).
- Zhao et al. \cite{zhao2007dynamic} developed dynamic texture for face recognition with facial expressions using the volume local binary patterns (vlbps).  Lei et al. \cite{lei2010face} used local binary pattern analysis to find the neighboring relationship and face representations are developed by convolving the face image with a Gabor filter bank. Chen et al. \cite{chen2002region,chen2005clue} developed a fuzzy logic approach and color representation based on clustering in a given region. Ojala et al. \cite{ojala1996comparative} perform evaluation of the state of the art  texture measures and local binary patterns(lbps) for texture retrieval. Zhang  et al. \cite{zhang2009local} proposed high order LDP to retrieve the more required information and used several spatial relationships found in a given segment. Subrahmanyam et al. \cite{subrahmanyam2012local} combined  local maximum edge binary patterns with Gabor transform. 
- %Amalgamation of color and texture features used for feature extraction from an image in CBIR system that extended to retrieve sub images \cite{murthy2014detection}.
-  Majumder et al. \cite{majumder2016automatic} developed a deep neural network for automatic facial expression recognition that consist of auto-encoders and classifier. 
-
-Local binary patterns (LBP) is a type of visual descriptor used in face recognition.
-The face image is divided into small regions and apply LBP to these local regions to extract local descriptor and finally combining all these local LBP features will give the global feature histogram \cite{ahonen2006face}. Zhao et al. \cite{zhao2007dynamic} modeled textures with VLBP, combining motion and appearance and co-occurrences of lbp operator on orthogonal planes. 
-%High-order Local Derivative Pattern(LDP) for face recognition and local binary patterns(LBP) to detain the more feature than that of the first-order derivatives \cite{zhang2009local}.
+\section{Literature Survey}
+Local binary pattern operator became an emerging method in texture feature extraction branch of content based image retrieval was introduced by Ojala et al. [5] further developed combinational operator using grayscale and rotation invariant to detect the uniform patterns for multiresolution and multidirectional ways to retrieve the spatial information[18]. Liao et al.(2009) [19] were proposed dominant local binary patterns (DLBP) for local texture classification, in addition circular symmetric gabor filter (CSGF) used to retrieve the global information to improve the accuracy. Tan and Triggs et al. [20] were introduced a generalized feature descriptor ie. Local ternary patterns for face recognition as noiseless sensitive and more discriminate in uniform regions compared LBP. Murala et al. [21] has proposed local tetra patterns (LTrPs) by using second order derivatives in the directions of vertical and horizontal that combined with additional magnitude pattern also presented and compared results with gabor transform and also proposed directional local extrema patterns to retrieve the image edge information based on four directions such as 0◦, 45◦, 90◦ and 135◦ [22]. Also proposed local maximum edge binary patterns (LMEBPs) are introduced for local region based retrieval and object tracking [23]. Vipparthi et al. [24] has proposed color directional local quinary patterns (CDLQP) using DBC and quantization values for individual colors in RGB model. Furthermore, local gabor maximum edge positioned octal patterns are introduced by combining the sign and magnitude maximum edge octal patterns features [25]. Yixin Chen et al. [26] has intended a method ie. Dynamic cluster based image retrieval using unsupervised learning based on image feature. Manjunath et al. [27] has proposed clustered color space representation to retrieve the color space descriptor for large image databases. Fernando et al. [28] has built a system using combinational factors such as K-NN classifier, color space representation (grayscale, RGB, CMY etc.), color and texture combinational features (mean, standard deviation etc.) for automatic smooth surface image classification like ceramic tiles, textile surface etc. Mitra et al. [29] has proposed a new feature similarity measurement called as maximum information comparison index based on redundancy reduction for multiscale dataset representation to improve the speed. Zia Uddin et.al proposed latest technique named LDRHP (Local Directional Rank Histogram Patterns) and LDSMP (Local Directional Strength Patterns) are combined to extract the feature of facial expression images and used CNN for expression classification with three layers [34].
 
 
+The basic patterns such as LBP, LTP are extracted the local information depends on edge distribution, which encoded either in positive direction or negative direction. Therefore these methods can also be advanced by considering the more directions instead of two directions. Our work proposed evaluating the possible directional information for each pixel as first-order derivatives then second order derivatives are evaluated based on quantization of proposed threshold values referred as local directional stigma patterns (LDSMP) for texture feature extraction for classification. 
 
+\subsection{Feature extraction Using Local Directional Stigma Mean Patterns (LDSMPs):}
+The basic idea of this patters are stimulated from the local textural patterns like LBP, LTP, LDP and DBC etc [5][19][17][23]. It depicts the spatial and temporal structure of the local texture feature based on the directions of the centered gray pixel value $‘g_c’$. Given image ‘Ι’, the first-ordered derivatives are calculated along with the  $0^°, 180^°, ±45^°, ± 90^°  and ± 135^°$  directions and are indicated as $I_α^' (g_c )_(α= 0^°,180^°,±45^°,± 90^°,± 135^0 ) $. Let $g_c$ denote the center pixel in, Let $I_Dir^' (g_c )$   is the direction of the pixel then, the first-ordered derivatives at the center pixel  $'g_c'$.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{chapter3/lbpEx1}
+	\caption{Numerical illustration of proposed method considering static threshold values and generation of six binary patterns by substituting each threshold value with ‘1’ and other values and 0’s are with ‘0’.}
+	\label{fig:lbpex1}
+\end{figure}
 
-\bibliography{thesis}
-\bibliographystyle{elsarticle-num}
-\end{document}
+$$I_(0^{\circ})^' (g_c ) = I(g_(0^\circ ) )- I(g_c )$$
+$$I_(+45^\circ)^' (g_c ) = I(g_(+45^\circ) )- I(g_c )$$
+$$I_(+90^\circ)^' (g_c ) = I(g_(+90^\circ) )- I(g_c )$$
+$$I_(+135^\circ)^' (g_c ) = I(g_(+135^\circ) )- I(g_c )$$
+$$I_(180^\circ)^' (g_c ) =I(g_(180^\circ))- I(g_c )$$
+$$I_(-45^\circ)^' (g_c ) = I(g_(-45^\circ))- I(g_c )$$
+$$I_(-90^\circ)^' (g_c ) = I(g_(-90^\circ))- I(g_c )$$
+$$I_(-135^\circ)^' (g_c ) = I(g_(-135^\circ))- I(g_c )$$
 
+From above equations, possible differences of all directions to an image pixel can also be calculated using equation \ref{diff} by considering 8 different directions. Thus, substituting the given threshold values using equation \ref{threshold}.
+\begin{equation}
+I_Dir^' (g_c ) = I(g_Dir )- I(g_c ) 
+\end{equation}
+$\forall Dir = 0^\circ ,180^\circ,±45^\circ,± 90^\circ  and ± 135^\circ$
 
-
+The second order $‘LDSP^2 (g_c )’$ is defined as follows:
+\begin{equation}
+f(p_(c ),\tau_(3 ),\tau_(2 ),\tau__(1 )  )= {(+3,                p_(c )≥\tau__(3 )  @+2,\tau__(3 )>p_(c )≥\tau__(2 )  +1,\tau__(2 )>p_(c )≥\tau__(1 )@0,     -\tau__(1 )<p_(c )<\tau__(1 )   @-1,-\tau__(2 )<p_(c )≤-\tau__(1 )@-2,   -\tau__(3 )<p_(c )≤-\tau__(2 )@-3,                 p_(c )≤-\tau__(3 ) )
+\end{equation}

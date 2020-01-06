@@ -1,0 +1,104 @@
+\chapter{Literature Review}
+\label{Chapter2:SLR}
+Over the last two decades shared and stored multimedia data are growing. Retrieving an accurate image has become a key challenge yet to be solved. we can solve this problem using texture patterns that reduce the gap between the actual image over the user expectation instead of using other low-level features. This chapter reviews some of the existing approaches and the recent achievements in different directions  of the textural areas in CBIR. We present recent methods for   collect  features extraction through texture analysis, numerical illustration and similarity measurement. Further, some research issues arising out of the review of existing methods are discussed in comparisons of textural patterns and concluded with a few recommendations based on generic survey.
+
+
+\section{Introduction}	
+The-state-of-art escalation in the digital data production steadily due to the dominant use of internet and digital equipment in various fields such as medical (Mitra, Murthy, \& Pal, 2004; Zhang, Brady, \& Smith, 2001), entertainment, education, media, online business etc. becoming by keywords. This makes the system cumbersome to manage the abundant data is and human annotations as if in text- based systems. Therefore, here is a tremendous call for an efficient system to retrieve the precise images from the massive database rather than labels. Today Content based image retrieval (CBIR) system is the most well-known system for some applications, CBIR consists the important and essential steps such as feature extraction, relevance feedback, similarity measurements etc., and here feature extraction is the most prominent step in preprocessing that depends on the technique make use of extract the features from the only image like local data as color, texture, shape, human faces etc., further features are categorized into local features such as color features, layout, shape features and texture (Deng, Manjunath, Kenney, Moore, \& Shin, 2001; Manjunath, Ohm, Vasudevan, \& Yamada, 2001) and high-level features such as faces, biometric, neural networks etc. To retrieve an accurate image with the help of one and only feature is arduous due to the probability of user taking photographs in any direction like several regions which include random direction of capturing of image, optical device, uneven illumination and that of posing expressions, relevance feedback etc. (Jing, Li, Zhang, \& Zhang, 2004; Su, Zhang, Li \& Ma, 2003) so the system demands the combination of two or multiple features and filtering process. A general and upgraded survey is typified in the further sections.
+
+\section{Review of Local Textural Patterns for Facial Feature Extraction}
+The section presents the comprehensive survey on the, local patterns such as LBP, LTP, LTRP etc. texture analysis and retrieval are important and to be in a tight corner in the field of CBIR. Textures are most useful in retrieving of tiles, facial expressions, fabric, clouds, animal skin etc. 
+
+Rui et al. \cite{rui1999image} presented a survey on the image feature representation and extraction, multidimensional indexing, and system design. 
+Moghaddam et al. \cite{moghaddam2006gabor} have improved the Gabor wavelet correlogram (GWC) for image indexing and retrieving and address the redundancy problem \cite{moghaddam2006gabor}. Further they proposed evolutionary group algorithm to optimize the weights which improve the  evaluation measures  \cite{Moghaddam2007novel}.  Ojala et al. \cite{pietikainen2000rotation} used the G statistic metric to compare feature distributions and they derived the feature distribution using local texture operator on texture image. Ying Liu presents and analyzes high level features for CBIR such as machine learning tools, object ontology, semantic template, and neural networks to reduce the semantic gap (n.d.). Zhao et al. \cite{zhao2007dynamic} developed dynamic texture for face recognition with facial expressions using the volume local binary patterns (vlbps).  Lei et al. \cite{lei2010face} used local binary pattern analysis to find the neighboring relationship and face representations are developed by convolving the face image with a Gabor filter bank. Chen et al. \cite{chen2002region,chen2005clue} developed a fuzzy logic approach and color representation based on clustering in a given region. Ojala et al. \cite{ojala1996comparative} perform evaluation of the state of the art  texture measures and local binary patterns(lbps) for texture retrieval. Zhang  et al. \cite{zhang2009local} proposed high order LDP to retrieve the more required information and used several spatial relationships found in a given segment. Subrahmanyam et al. \cite{subrahmanyam2012local} combined  local maximum edge binary patterns with Gabor transform. Amalgamation of color and texture features used for feature extraction from an image in CBIR system that extended to retrieve sub images \cite{murthy2014detection}. Majumder et al. \cite{majumder2016automatic} developed a deep neural network for automatic facial expression recognition that consist of autoencoders and classifier.  	
+
+\subsection{LOCAL PATTERNS}
+\subsubsection{Local Binary Patterns(LBPs)}
+Ojala et al. \cite{ojala2002multiresolution} introduced LBP operator to classify and retrieve the images which is popular in clouds for 2D texture field based CBIR. LBP are the simple and efficient technique to describe the local feature from an image by comparing each pixel gray value with neighboring pixels gray values. As shown in Figure 1 the given center pixel and calculates the difference between the surrounding neighbor pixels and threshold the value
+encodes ‘1’ for positive ($>$ 0 ) difference and ‘0’ for zero or negative ($\le$ 0) difference. For example in Figure 1(a) assume ‘5’ as center pixel and remaining ‘9’, ‘7’, ‘4’, ‘6’, ‘2’, ‘1’, ‘5’, ‘3’ as the
+neighboring pixels, Figure \ref{fig:lbpsteps}(b) and Equation \ref{lbpeq} describes the differences between the neighboring pixels, Figure \ref{fig:lbpsteps}(c) and Equation \ref{lbpeq2} shows the threshold binary values. So we evaluated the local binary pattern as '11010010'.
+
+Using Equation \ref{lbpeq2} substitution the calculated LBP value from binary $(1 * 2^7 + 1 * 2^6 + 0 * 2^5 + 1 * 2^4 + 0 * 2^3 + 0 * 2^2 + 1 * 2^1 + 0 * 2^0 )$ to decimal is `210'.
+\begin{equation}
+LBP_{P,R}=\sum_{n=0}^{P-1} 2^n * h_1(g_n-g_{center})
+\label{lbpeq}
+\end{equation}
+where, $g_{center}$ be the center pixel's gray value, $g_n$ be the neighboring pixel's value, and `P' and `R', are considered as the whole number of neighboring pixels and radius of the neighborhood pixel positions from center pixel value respectively.
+\begin{equation}
+g_1(x)=\left\{\begin{array}{cl} 1 &  x \ge 0 \\ 0 & Otherwise \end{array}\right\}
+\label{lbpeq2}
+\end{equation}
+
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=0.8\linewidth]{chapter2/LBPsteps}
+	\caption{a) The first step in LBP calculation, where the center pixel is surrounded with 8 neighboring pixels, b) Produced differences after comparison, c) Encoded values for the respective difference}
+	\label{fig:lbpsteps}
+\end{figure}
+
+
+Local binary patterns (LBP) is a type of visual descriptor used in face recognition. The idea behind using the LBP features is that a face can be seen as a composition of micropatterns  to extract local descriptor and finally combining all these local LBP features will give the global feature histogram \cite{ahonen2006face}. Zhao et al. \cite{zhao2007dynamic} modeled textures with VLBP, combining motion and appearance and co-occurrences of lbp operator on orthogonal planes.  High-order Local Pattern operator are used for face recognition with local binary patterns(LBP) to detain the more feature than that of the first-order derivatives \cite{zhang2009local}. In face recognition, it achieves a much better performance than Eigenface, Bayesian and EBGM methods, providing a new way of investigating into the face representation.  However, the first-order pattern fails to extract more detailed information contained in the input object.
+
+
+
+\subsubsection{ Local Maximum Edge Binary Patterns (LMEBP)}
+Subrahmanyam et al. \cite{subrahmanyam2012local} proposed LMEBP that extracts the information based on distribution of edges in an image. These magnitude edges are collected based on the maximum edges between the center pixel and its surrounding neighbors in an image as ﻿shown Figure\ref{lmebp}. Combination of Gabor transforms with LMEBP has shown better performance for different applications. Vipparthi et al. \cite{vipparthi2015local} developed octal code based on the relationship between the referenced pixel and neighbors and first three dominant edge positions as shown in Equations \ref{lmebpEq} to \ref{lmebpEq4}. Further, they generated  two patterns based on the sign and magnitudes of dominant edges. 	
+\begin{equation}
+	s'(p_i)=s(p_i) - s(p_c), i= 1...8 
+	\label{lmebpEq}
+\end{equation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{chapter2/screenshot001}
+	\caption{LMEBPs by considering the (9, 1, 4, . . .,2) as centers}
+	\label{fig:screenshot001}
+\end{figure}
+\begin{equation}
+	i_1=_i^{arg} \left\{max(|s'(p_1)|, |s'(p_2)|, .... , |s'(p_8)|)\right\}
+	\label{lmebpEq2}
+\end{equation}
+\begin{equation}
+s^{new} (p_c) = g(s'(p_{i_1}))  
+\label{snew}
+\end{equation}
+
+where, $p_i, p_c$ are the neighbor pixel and center pixel respectively. ‘max ()’ finds the maximum value among the given pixels. The edge values are calculated using Equation \ref{snew} and \ref{edge} and is assigned ‘1’ if the value is grater than zero, otherwise assigned ‘0’. LMEBP ﻿patterns ﻿are ﻿used ﻿to ﻿extract ﻿the ﻿first ﻿three ﻿facial ﻿features ﻿from ﻿maximum ﻿edge ﻿positions only ﻿those ﻿covered maximum ﻿information.
+
+\begin{equation}
+g_2(x)=\left\{\begin{array}{cl} 1 &  x \ge 0 \\ 0 & Otherwise \end{array}\right\}
+\label{edge}
+\end{equation}
+\begin{equation}
+LMEBP(s(p_c))={s^{new}(p_c); s^{new}(p_1);s^{new}(p_2);....... s^{new}(p_s); }
+\label{lmebpEq3}
+\end{equation}
+
+
+\subsubsection{Uniform Local Binary Patterns (ULBPS)}
+ULBPS are a way to reduce the high dimension of the original LBP feature vector and improve the resilience of classification \cite{pietikainen2000rotation}. Uniform patterns are known to exhibit high discriminative capability and specific uniform LBP codes are able to provide responses to salient shapes. Uniform Local Binary Patterns are patterns with at most two circular 0-1 and 1-0 transitions. For example, patterns 00111000, 11111111, 00000000, and 11011111 are uniform, and patterns 01010000, 01001110, or 10101100 are not uniform. These pattens are useful to obtain rotation invariance.
+
+\subsubsection{Completed Local Binary Patterns}
+Guo et al. \cite{guo2010completed} had proposed CLBP, it consists of three patterns to be concatenated named CLBP\_Sign, CLBP\_Magnitude and CLBP\_Code collects the binary pattern based on sign, magnitude and threshold value.
+\begin{equation}
+Sign_p= \left\{\begin{array}{l} 1, \quad \delta_p \ge 0\\ 0, \quad otherwise. \end{array} \right\}
+\end{equation}
+
+Here, $‘δ_p’$ is the difference of center pixel gray value and neighbor pixel gray value ie $δ_p = g_p - g_c$ for CLBP\_S.
+
+\begin{equation}
+Magnitude_p = \left\{\begin{array}{l} 1, \quad |\delta_p| \ge 0\\ 0, \quad otherwise. \end{array} \right\}
+\end{equation}
+where, $‘δ_p’$	is always positive.
+
+\begin{equation}
+Code_p = \left\{\begin{array}{l} 1, \quad |\delta_p| > tau \\ -1, \quad . |\delta_p| \le \tau \\ -1\end{array} \right\}
+\end{equation}
+where, $‘δ_p’$	is always positive, $\tau$ is the dynamic threshold value which is calculated from average intensity of the total image ‘P’.
+$$
+\tau = \frac{1}{n} \sum_{k=1}^{n} P_k
+$$
+
+Finally, these three operators to be combined either using 3D histogram as CLBP\_Sign/ Magnitude/Code or 2D joint histogram by concatenating like CLBP_Sign + CLBP\_Magnitude/Code nor CLBP\_Magnitude + CLBP\_Sign/Code.
+Dubey et al. (2016) proposed multichannel decoded LBP is the combination of multichannel adder LBP (MALBP) and multichannel decoder LBP (MDLBP) are evaluated different LBP patterns to the RGB colors then combined histograms to construct feature vector.
